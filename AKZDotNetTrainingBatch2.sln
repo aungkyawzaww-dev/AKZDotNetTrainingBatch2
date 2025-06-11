@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36127.28 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKZDotNetTrainingBatch2.ConsoleApp", "AKZDotNetTrainingBatch2.ConsoleApp\AKZDotNetTrainingBatch2.ConsoleApp.csproj", "{27AC88D2-ADAC-4BA7-A8C9-19A6280647E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27AC88D2-ADAC-4BA7-A8C9-19A6280647E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27AC88D2-ADAC-4BA7-A8C9-19A6280647E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27AC88D2-ADAC-4BA7-A8C9-19A6280647E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27AC88D2-ADAC-4BA7-A8C9-19A6280647E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8DDB765A-920B-48B6-AA0F-734AD6B23C3B}
+	EndGlobalSection
+EndGlobal
