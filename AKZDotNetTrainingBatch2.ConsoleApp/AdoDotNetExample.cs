@@ -45,8 +45,6 @@ namespace AKZDotNetTrainingBatch2.ConsoleApp
             connection.Close();
             Console.WriteLine("Connection close.");
 
-
-
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 DataRow row = dt.Rows[i];

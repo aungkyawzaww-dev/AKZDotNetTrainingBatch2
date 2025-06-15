@@ -36,6 +36,7 @@ namespace AKZDotNetTrainingBatch2.ConsoleApp
             Console.WriteLine("Connection close.");
 
 
+            List<BlogDto> list = new List<BlogDto>();
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -44,6 +45,13 @@ namespace AKZDotNetTrainingBatch2.ConsoleApp
                 Console.WriteLine("BlogTitle => " + row["BlogTitle"]);
                 Console.WriteLine("BlogAuthor => " + row["BlogAuthor"]);
                 Console.WriteLine("BlogContent => " + row["BlogContent"]);
+
+                BlogDto blogDto = new BlogDto();
+                blogDto.BlogId = Convert.ToInt32(row["BlogId"]);
+                blogDto.BlogTitle = Convert.ToString(row["BlogTitle"])!;
+                blogDto.BlogAuthor = Convert.ToString(row["BlogAuthor"])!;
+                blogDto.BlogContent = Convert.ToString(row["BlogContent"])!;
+                list.Add(blogDto); // list အသစ် တစ်ခုဆောက်ပြီးပြန် ထည့်ပေးတာ
             }
 
         }
