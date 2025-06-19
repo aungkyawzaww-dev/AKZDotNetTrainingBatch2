@@ -32,8 +32,15 @@ Console.WriteLine("Hello, World!");
 //eFCoreExample.Update();
 //eFCoreExample.Delete();
 
-TestLinq testLinq = new TestLinq();
-testLinq.Read();
+//TestLinq testLinq = new TestLinq();
+//testLinq.Read();
 
+DapperHomeWork dapperHomeWork = new DapperHomeWork();
+//dapperHomeWork.Read();
+//dapperHomeWork.Edit();
+//dapperHomeWork.Create();
+//dapperHomeWork.Update();
+//dapperHomeWork.Delete();
+dapperHomeWork.InsertColumn();
 
 Console.ReadKey();
