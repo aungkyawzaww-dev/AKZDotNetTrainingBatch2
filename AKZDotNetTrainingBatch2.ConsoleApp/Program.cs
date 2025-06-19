@@ -25,12 +25,15 @@ Console.WriteLine("Hello, World!");
 //dapperExample.Delete();
 
 
-EFCoreExample eFCoreExample = new EFCoreExample();
-eFCoreExample.Read();
+//EFCoreExample eFCoreExample = new EFCoreExample();
+//eFCoreExample.Read();
 //eFCoreExample.Edit();
 //eFCoreExample.Create();
 //eFCoreExample.Update();
 //eFCoreExample.Delete();
+
+TestLinq testLinq = new TestLinq();
+testLinq.Read();
 
 
 Console.ReadKey();
