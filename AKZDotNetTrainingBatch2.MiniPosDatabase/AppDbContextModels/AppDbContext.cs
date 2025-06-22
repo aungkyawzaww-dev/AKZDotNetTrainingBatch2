@@ -46,6 +46,19 @@ public partial class AppDbContext : DbContext
             entity.HasKey(e => e.SaleDetailId);
 
             entity.ToTable("Tbl_SaleDetail");
+
+            entity.Property(e => e.Price)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.ProductId)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Quantity)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.SaleId)
+                .HasMaxLength(50)
+                .IsUnicode(false);
         });
 
         modelBuilder.Entity<TblSaleSummary>(entity =>

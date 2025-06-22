@@ -7,11 +7,11 @@ public partial class TblSaleDetail
 {
     public int SaleDetailId { get; set; }
 
-    public int SaleId { get; set; }
+    public string SaleId { get; set; } = null!;
 
-    public int ProductId { get; set; }
+    public string ProductId { get; set; } = null!;
 
-    public int Quantity { get; set; }
+    public string Quantity { get; set; } = null!;
 
-    public int Price { get; set; }
+    public string Price { get; set; } = null!;
 }
