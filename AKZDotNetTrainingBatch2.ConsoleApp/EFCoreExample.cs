@@ -12,7 +12,7 @@ namespace AKZDotNetTrainingBatch2.ConsoleApp
         {
             AppDbContext db = new AppDbContext();
             List<BlogModel> lst = db.Blogs
-                .Where(x => x.DeleteFlag == false)
+                .Where(x => x.DeleteFlag == false)  
                 .OrderByDescending(x => x.BlogId)
                 .ToList(); // execute 
             foreach (var item in lst)

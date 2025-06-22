@@ -1,6 +1,8 @@
 ﻿
 
 using AKZDotNetTrainingBatch2.ConsoleApp;
+using AKZDotNetTrainingBatch2.Database;
+using AKZDotNetTrainingBatch2.Database.App2DbContextModels;
 
 Console.WriteLine("Hello, World!");
 
@@ -35,12 +37,20 @@ Console.WriteLine("Hello, World!");
 //TestLinq testLinq = new TestLinq();
 //testLinq.Read();
 
-DapperHomeWork dapperHomeWork = new DapperHomeWork();
+//DapperHomeWork dapperHomeWork = new DapperHomeWork();
 //dapperHomeWork.Read();
 //dapperHomeWork.Edit();
 //dapperHomeWork.Create();
 //dapperHomeWork.Update();
 //dapperHomeWork.Delete();
-dapperHomeWork.InsertColumn();
+//dapperHomeWork.InsertColumn();
+
+//Class1 class1 = new Class1();
+//int result = class1.Method(1,2);
+//Console.WriteLine(result);
+
+App2DbContext appDbContext = new App2DbContext();
+var result = appDbContext.TblBlogs.ToList();
+
 
 Console.ReadKey();

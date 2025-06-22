@@ -1,0 +1,124 @@
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+
+namespace AKZDotNetTrainingBatch2.Database.App2DbContextModels;
+
+public partial class App2DbContext : DbContext
+{
+    public App2DbContext()
+    {
+    }
+
+    public App2DbContext(DbContextOptions<App2DbContext> options)
+        : base(options)
+    {
+    }
+
+    public virtual DbSet<TblBlog> TblBlogs { get; set; }
+
+    public virtual DbSet<TblPhoneShop> TblPhoneShops { get; set; }
+
+    public virtual DbSet<TblSale> TblSales { get; set; }
+
+    public virtual DbSet<TblStudent> TblStudents { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=.;Database=DotNetTrainingBatch2;User ID=sa;Password=sasa@123;TrustServerCertificate=True;");
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<TblBlog>(entity =>
+        {
+            entity.HasKey(e => e.BlogId);
+
+            entity.ToTable("Tbl_Blog");
+
+            entity.Property(e => e.BlogAuthor)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.BlogContent)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.BlogTitle)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<TblPhoneShop>(entity =>
+        {
+            entity.ToTable("Tbl_PhoneShop");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("name");
+            entity.Property(e => e.Price)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("price");
+            entity.Property(e => e.Quantity)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("quantity");
+        });
+
+        modelBuilder.Entity<TblSale>(entity =>
+        {
+            entity.HasKey(e => e.No);
+
+            entity.ToTable("Tbl_Sale");
+
+            entity.Property(e => e.No).HasColumnName("no");
+            entity.Property(e => e.DeleteFlag).HasColumnName("deleteFlag");
+            entity.Property(e => e.Discount)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasDefaultValueSql("((0))")
+                .HasColumnName("discount");
+            entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("name");
+            entity.Property(e => e.Price)
+                .HasColumnType("decimal(18, 0)")
+                .HasColumnName("price");
+        });
+
+        modelBuilder.Entity<TblStudent>(entity =>
+        {
+            entity.HasKey(e => e.StudentId);
+
+            entity.ToTable("Tbl_Student");
+
+            entity.Property(e => e.Address)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.DateOfBirth).HasColumnType("datetime");
+            entity.Property(e => e.Email)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.FatherName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Gender)
+                .HasMaxLength(10)
+                .IsUnicode(false);
+            entity.Property(e => e.MobileNo)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+            entity.Property(e => e.StudentName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.StudentNo)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+        });
+
+        OnModelCreatingPartial(modelBuilder);
+    }
+
+    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+}

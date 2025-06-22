@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AKZDotNetTrainingBatch2.Database\AKZDotNetTrainingBatch2.Database.csproj" />
+  </ItemGroup>
+
 </Project>
