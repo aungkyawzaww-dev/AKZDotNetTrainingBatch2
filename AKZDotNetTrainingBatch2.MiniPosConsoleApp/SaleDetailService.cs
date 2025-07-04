@@ -1,4 +1,4 @@
-﻿using AKZDotNetTrainingBatch2.MiniPosDatabase.AppDbContextModels;
+﻿using AKZDotNetTrainingBatch2.MininPosDatabase.AppDbContextModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,16 +62,16 @@ namespace AKZDotNetTrainingBatch2.MiniPosConsoleApp
         {
 
             Console.Write("Enter Sale Id : ");
-            string SaleId = Console.ReadLine()!;
+            int SaleId = Convert.ToInt32(Console.ReadLine())!;
 
             Console.Write("Enter Product Id : ");
-            string ProductId = Console.ReadLine()!;
+            int ProductId = Convert.ToInt32(Console.ReadLine())!;
 
             Console.Write("Quantity : ");
-            string Quantity = Console.ReadLine()!;
+            int Quantity = Convert.ToInt32(Console.ReadLine())!;
 
             Console.Write("Price : ");
-            string Price = Console.ReadLine()!;
+            int Price = Convert.ToInt32(Console.ReadLine())!;
 
             TblSaleDetail saleDetail = new TblSaleDetail()
             {

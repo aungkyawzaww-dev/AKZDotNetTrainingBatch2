@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AKZDotNetTrainingBatch2.MiniPosDatabase\AKZDotNetTrainingBatch2.MiniPosDatabase.csproj" />
 	<PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.6" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.6">
@@ -20,6 +19,10 @@
 		<PrivateAssets>all</PrivateAssets>
 		<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AKZDotNetTrainingBatch2.MininPosDatabase\AKZDotNetTrainingBatch2.MininPosDatabase.csproj" />
   </ItemGroup>
 
 </Project>

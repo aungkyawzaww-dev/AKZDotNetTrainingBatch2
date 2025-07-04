@@ -1,4 +1,4 @@
-﻿using AKZDotNetTrainingBatch2.MiniPosDatabase.AppDbContextModels;
+﻿using AKZDotNetTrainingBatch2.MininPosDatabase.AppDbContextModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,7 +56,7 @@ namespace AKZDotNetTrainingBatch2.MiniPosConsoleApp
             string ProductName = Console.ReadLine()!;
 
             Console.Write("Enter Product Price : ");
-            string ProductPrice = Console.ReadLine()!;
+            int ProductPrice = Convert.ToInt32(Console.ReadLine())!;
 
             TblProduct product = new TblProduct()
             {
@@ -91,7 +91,7 @@ namespace AKZDotNetTrainingBatch2.MiniPosConsoleApp
             string ProductName = Console.ReadLine()!;
 
             Console.Write("Enter Product Price : ");
-            string ProductPrice = Console.ReadLine()!;
+            int ProductPrice = Convert.ToInt32(Console.ReadLine())!;
 
             AppDbContext db = new AppDbContext();
             var item = db.TblProducts
@@ -139,5 +139,100 @@ namespace AKZDotNetTrainingBatch2.MiniPosConsoleApp
             return item != null;
         }
 
+        public void Execute()
+        {
+           Result:
+            Console.WriteLine("Product Menu");
+            Console.WriteLine("-----------------------");
+            Console.WriteLine("1. New Product");
+            Console.WriteLine("2. Show All Product");
+            Console.WriteLine("3. Product List");
+            Console.WriteLine("4. Update Product");
+            Console.WriteLine("5. Delete Product");
+            Console.WriteLine("6. Exit");
+            Console.WriteLine("-----------------------");
+
+            Console.Write("Choose Product Menu : ");
+            string result = Console.ReadLine()!;
+            bool isInt = int.TryParse(result, out int no);
+            if (!isInt)
+            {
+                Console.WriteLine("Invalid Product Menu. Please choose 1 to 6");
+                goto Result;
+            }
+
+            Console.WriteLine("-----------------------");
+
+            EnumProductMenu menu = (EnumProductMenu)no;
+            switch (menu)
+            {
+                case EnumProductMenu.NewProduct:
+                    Console.WriteLine("-----------------------");
+                    Console.WriteLine("This is New Product");
+                    Create();
+                    Console.WriteLine("-----------------------");
+                    goto Result;
+
+                case EnumProductMenu.ShowAllProduct:
+                    Console.WriteLine("-----------------------");
+                    Console.WriteLine("This is Show All Product");
+                    Read();
+                    Console.WriteLine("-----------------------");
+                    goto Result;
+
+                case EnumProductMenu.ProductList:
+                    Console.WriteLine("-----------------------");
+                    Console.WriteLine("This is Product List ");
+                    Edit();
+                    Console.WriteLine("-----------------------");
+                    goto Result;
+
+                case EnumProductMenu.UpdateProduct:
+                    Console.WriteLine("-----------------------");
+                    Console.WriteLine("This is Update Product");
+                    Update();
+                    Console.WriteLine("-----------------------");
+                    goto Result;
+
+                case EnumProductMenu.DeleteProduct:
+                    Console.WriteLine("-----------------------");
+                    Console.WriteLine("This is Delete Product");
+                    Delete();
+                    Console.WriteLine("-----------------------");
+                    goto Result;
+
+                case EnumProductMenu.Exit:
+                    Console.WriteLine("This is Exit Product");
+                    goto End;
+                case EnumProductMenu.None:
+                default:
+                    break;
+            }
+            Console.WriteLine("-----------------------");
+
+            End:
+                Console.WriteLine("Existing Product Menu");
+        }
+
+    }
+
+    public enum EnumProductMenu
+    {
+        None,
+        NewProduct,
+        ShowAllProduct,
+        ProductList,
+        UpdateProduct,
+        DeleteProduct,
+        Exit
+    }
+
+    public enum EnumMenu
+    {
+        None,
+        ProductMenu,
+        Sale,
+        SaleDetail,
+        Exit
     }
 }

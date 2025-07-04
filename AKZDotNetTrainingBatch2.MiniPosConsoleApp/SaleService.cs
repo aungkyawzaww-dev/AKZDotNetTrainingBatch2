@@ -1,4 +1,4 @@
-﻿using AKZDotNetTrainingBatch2.MiniPosDatabase.AppDbContextModels;
+﻿using AKZDotNetTrainingBatch2.MininPosDatabase.AppDbContextModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,11 +60,11 @@ namespace AKZDotNetTrainingBatch2.MiniPosConsoleApp
             string VoucherNo = Console.ReadLine()!;
 
             Console.Write("Total Amount : ");
-            string TotalAmount = Console.ReadLine()!;
+            int TotalAmount = Convert.ToInt32(Console.ReadLine())!;
 
             TblSaleSummary saleSummary = new TblSaleSummary()
             {
-                SaleDate = SaleDate,
+                SaleDate = DateTime.Now,
                 VoucherNo = VoucherNo,
                 TotalAmount = TotalAmount
             };
@@ -73,6 +73,11 @@ namespace AKZDotNetTrainingBatch2.MiniPosConsoleApp
             db.TblSaleSummaries.Add(saleSummary);
             int result = db.SaveChanges();
             Console.WriteLine(result > 0 ? "Creating successful." : "Creating failed.");
+
+        }
+
+        public void Execute()
+        {
 
         }
     }
