@@ -21,6 +21,8 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<TblSaleSummary> TblSaleSummaries { get; set; }
 
+    public virtual DbSet<TblStaffRegister> TblStaffRegisters { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=.;Database=DotNetTrainingBatch2MiniPos;User ID=sa;Password=sasa@123;TrustServerCertificate=True;");
@@ -55,6 +57,36 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.VoucherNo)
                 .HasMaxLength(50)
                 .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<TblStaffRegister>(entity =>
+        {
+            entity.HasKey(e => e.Staffid);
+
+            entity.ToTable("Tbl_StaffRegister");
+
+            entity.Property(e => e.Staffid).HasColumnName("staffid");
+            entity.Property(e => e.DeleteFlag).HasColumnName("delete_flag");
+            entity.Property(e => e.Email)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("email");
+            entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("name");
+            entity.Property(e => e.Password)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("password");
+            entity.Property(e => e.Position)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("position");
+            entity.Property(e => e.Staffcode)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("staffcode");
         });
 
         OnModelCreatingPartial(modelBuilder);

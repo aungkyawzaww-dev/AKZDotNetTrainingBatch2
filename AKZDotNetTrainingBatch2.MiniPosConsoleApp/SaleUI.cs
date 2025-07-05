@@ -1,10 +1,5 @@
 ﻿using AKZDotNetTrainingBatch2.MininPosDatabase.AppDbContextModels;
 using AKZDotNetTrainingBatch2.Project1.Domain.Features;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AKZDotNetTrainingBatch2.MiniPosConsoleApp
 {
@@ -71,7 +66,6 @@ namespace AKZDotNetTrainingBatch2.MiniPosConsoleApp
         End:
             Console.WriteLine("Existing Product Menu");
         }
-
 
         public void NewSale()
         {

@@ -1,10 +1,6 @@
 ﻿using AKZDotNetTrainingBatch2.MininPosDatabase.AppDbContextModels;
 using AKZDotNetTrainingBatch2.Project1.Domain.Features;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace AKZDotNetTrainingBatch2.MiniPosConsoleApp
 {
@@ -63,7 +59,6 @@ namespace AKZDotNetTrainingBatch2.MiniPosConsoleApp
             ProductService productService = new ProductService();
             var result = productService.CreateProduct(ProductName, ProductPrice);
             Console.WriteLine(result > 0 ? "Creating successful." : "Creating failed.");
-
 
         }
 
