@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SaleDetailService.cs" />
+    <Compile Remove="SaleService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
 	<PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.6" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.6">
@@ -23,6 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AKZDotNetTrainingBatch2.MininPosDatabase\AKZDotNetTrainingBatch2.MininPosDatabase.csproj" />
+    <ProjectReference Include="..\AKZDotNetTrainingBatch2.Project1.Domain\AKZDotNetTrainingBatch2.Project1.Domain.csproj" />
   </ItemGroup>
 
 </Project>

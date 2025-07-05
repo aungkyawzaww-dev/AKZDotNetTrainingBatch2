@@ -1,4 +1,5 @@
 ﻿using AKZDotNetTrainingBatch2.MininPosDatabase.AppDbContextModels;
+using AKZDotNetTrainingBatch2.Project1.Domain.Features;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,15 +8,17 @@ using System.Threading.Tasks;
 
 namespace AKZDotNetTrainingBatch2.MiniPosConsoleApp
 {
-    public class ProductService
+    public class ProductUI
     {
         public void Read()
         {
-            AppDbContext db = new AppDbContext();
-            List<TblProduct> lst = db.TblProducts
-                .Where(x => x.DeleteFlag == false)
-                .OrderByDescending(x => x.ProductId)
-                .ToList();
+            //AppDbContext db = new AppDbContext();
+            //List<TblProduct> lst = db.TblProducts
+            //    .Where(x => x.DeleteFlag == false)
+            //    .OrderByDescending(x => x.ProductId)
+            //    .ToList();  
+            ProductService productService = new ProductService();
+            var lst = productService.GetProducts();
 
             foreach (var item in lst)
             {
@@ -34,10 +37,9 @@ namespace AKZDotNetTrainingBatch2.MiniPosConsoleApp
 
             if (!isInt) goto FirstPage;
 
-            AppDbContext db = new AppDbContext();
-            var item = db.TblProducts
-                .Where(x => x.DeleteFlag == false)
-                .FirstOrDefault(x => x.ProductId == id);
+            ProductService productService = new ProductService();
+            var item = productService.FindProduct(id);
+
             if (item == null)
             {
                 Console.WriteLine("You Invalid Id!");
@@ -58,16 +60,10 @@ namespace AKZDotNetTrainingBatch2.MiniPosConsoleApp
             Console.Write("Enter Product Price : ");
             int ProductPrice = Convert.ToInt32(Console.ReadLine())!;
 
-            TblProduct product = new TblProduct()
-            {
-                Name = ProductName,
-                Price = ProductPrice
-            };
-
-            AppDbContext db = new AppDbContext();
-            db.TblProducts.Add(product);
-            int result = db.SaveChanges();
+            ProductService productService = new ProductService();
+            var result = productService.CreateProduct(ProductName, ProductPrice);
             Console.WriteLine(result > 0 ? "Creating successful." : "Creating failed.");
+
 
         }
 
@@ -93,15 +89,13 @@ namespace AKZDotNetTrainingBatch2.MiniPosConsoleApp
             Console.Write("Enter Product Price : ");
             int ProductPrice = Convert.ToInt32(Console.ReadLine())!;
 
-            AppDbContext db = new AppDbContext();
-            var item = db.TblProducts
-                .Where(x => x.DeleteFlag == false)
-                .FirstOrDefault(x => x.ProductId == id);
-
-            item.Name = ProductName;
-            item.Price = ProductPrice;
-
-            int result = db.SaveChanges();
+            ProductService productService = new ProductService();
+            var result = productService.UpdateProduct(id, ProductName, ProductPrice);
+            if(result == -1)
+            {
+                Console.WriteLine("No Data Found");
+                goto FirstPage;
+            }
             Console.WriteLine(result > 0 ? "Updating successful." : "Updating failed.");
 
         }
@@ -121,12 +115,8 @@ namespace AKZDotNetTrainingBatch2.MiniPosConsoleApp
                 Console.WriteLine("Invalid Id!");
                 goto FirstPage;
             }
-
-            AppDbContext db = new AppDbContext();
-            var item = db.TblProducts.FirstOrDefault(x => x.ProductId == id);
-            item.DeleteFlag = true;
-
-            int result = db.SaveChanges();
+            ProductService productService = new ProductService();
+            var result = productService.DeleteProduct(id);
             Console.WriteLine(result > 0 ? "Deleting successful." : "Deleting failed.");
         }
 
@@ -236,3 +226,5 @@ namespace AKZDotNetTrainingBatch2.MiniPosConsoleApp
         Exit
     }
 }
+
+
