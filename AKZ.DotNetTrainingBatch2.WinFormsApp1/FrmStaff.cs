@@ -1,5 +1,7 @@
 using AKZ.DotNetTrainingBatch2.WinFormsApp1.Database.AppDbContextModels;
+using MimeKit;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using MailKit.Net.Smtp;
 
 namespace AKZ.DotNetTrainingBatch2.WinFormsApp1
 {
@@ -33,6 +35,7 @@ namespace AKZ.DotNetTrainingBatch2.WinFormsApp1
         {
             try
             {
+                txtPassword.Text = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 8);
                 //AppDbContext db = new AppDbContext();
                 _db.TblStaffRegisters.Add(new TblStaffRegister
                 {
@@ -44,8 +47,32 @@ namespace AKZ.DotNetTrainingBatch2.WinFormsApp1
                     DeleteFlag = false
                 });
                 int result = _db.SaveChanges();
-                string messsage = result > 0 ? "Saving Successful." : "Saving Failed";
-                MessageBox.Show(messsage, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string messsageStr = result > 0 ? "Saving Successful." : "Saving Failed";
+                MessageBox.Show(messsageStr, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+             // from mailkit
+                var message = new MimeMessage();
+                message.From.Add(new MailboxAddress("Aung Kyaw Zaww", "aungkyawzaww7889@gmail.com"));
+                message.To.Add(new MailboxAddress(txtCode.Text.Trim(), txtEmail.Text.Trim()));
+                message.Subject = "Mini POS - User Creation";
+
+                message.Body = new TextPart("plain")
+                {
+                    Text = $@"Your staff code is {txtCode.Text.Trim()}
+Your password is {txtPassword.Text }"
+                };
+
+                using (var client = new SmtpClient())
+                {
+                    client.Connect("smtp.gmail.com", 587, false);
+
+                    // Note: only needed if the SMTP server requires authentication
+                    client.Authenticate("aungkyawzaww7889@gmail.com", "cgow ndmy tzzu oise"); // email & password  https://myaccount.google.com/apppasswords?pli=1&rapt=AEjHL4Mfut7en43s2BB7A9_a0DG-Ktg7GzcEB0_ZrwbyqGuC8KPZ7fzpEkaEV31bg5ywU5PvTfkHm5G-f2HuqqzexL9kKBjb5JOp1H6ubnfml21GUNsmN5c
+
+                    client.Send(message);
+                    client.Disconnect(true);
+                }
+            
 
                 txtCode.Clear();
                 txtName.Clear();
