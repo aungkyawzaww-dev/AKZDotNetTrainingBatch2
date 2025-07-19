@@ -1,0 +1,6 @@
+@AKZDotNetTrainingBatch2.WebApi_HostAddress = http://localhost:5169
+
+GET {{AKZDotNetTrainingBatch2.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
